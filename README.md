@@ -15,8 +15,8 @@ System requirement:
 
 Author's note:
 - I am currently working on implementing neural network using PyTorch to monitor stock level, but it is not working well.
-- alldata.db is all test data.
-- They are not actual data.
+- alldata.db is all test data. They are not actual data.
+- 太陽油集團（國際）有限公司 is a fake company name. If there exists such company, please note that this program has nothing to do with this company.
 - Please use accounts aturing(staff) and anobel(manager) for testing purposes.
 - An OTP is required for the system, you can change the staff email in alldata.db Staff table to your own email to receive the otp and log into the system.
 - Please run this line on sqlite3 to update the staff table to your email:
