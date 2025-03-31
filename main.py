@@ -323,7 +323,7 @@ class Layout:
                     cursor.execute("SELECT SKUID, Qty FROM POSKU WHERE POID=:poid", {"poid": poid})
                     for rows in cursor.fetchall():
                         cursor.execute("SELECT CurrentStockLvl FROM SKU WHERE SKUID=:skuid", {"skuid": rows[0]})
-                        cursor.execute("UPDATE SKU SET CurrentStockLvl=:curr WHERE ", {"curr": rows[1]+cursor.fetchall()[0][0]})
+                        cursor.execute("UPDATE SKU SET CurrentStockLvl=:curr WHERE SKUID=:skuid", {"curr": rows[1]+cursor.fetchall()[0][0], "skuid": rows[0]})
                 connection.commit()
                 self.__init__(master, width, height, username)   #Return to dashboard
             
@@ -348,7 +348,7 @@ class Layout:
                 colindex = 0
                 for col in row:
                     if colindex == 0:
-                        self.widgetsArr[1].append([ttk.Button(master, text=col, cursor="hand2", command=lambda rowindex=rowindex: view(poArr[rowindex-2][0])), rowindex, 1, 0, 1, 0])
+                        self.widgetsArr[1].append([ttk.Button(master, text=col, cursor="hand2", command=lambda rowindex=rowindex: view(poArr[rowindex-3][0])), rowindex, 1, 0, 1, 0])
                     else:
                         self.widgetsArr[1].append([ttk.Label(master, text=col, background="MediumPurple1", foreground="white"), rowindex, 1, colindex, 1, 0])
                     colindex += 1
@@ -367,7 +367,7 @@ class Layout:
                 colindex = 0
                 for col in row:
                     if colindex == 0:
-                        self.widgetsArr[1].append([ttk.Button(master, text=col, cursor="hand2", command=lambda rowindex=rowindex: self.approval(master, poArr[rowindex-2][0])), rowindex, 1, 0, 1, 0])
+                        self.widgetsArr[1].append([ttk.Button(master, text=col, cursor="hand2", command=lambda rowindex=rowindex: self.approval(master, poArr[rowindex-3][0])), rowindex, 1, 0, 1, 0])
                     else:
                         if colindex == 1:
                             cursor.execute("SELECT SupplierName FROM Supplier WHERE SupplierID=:suppID", {"suppID": col})
